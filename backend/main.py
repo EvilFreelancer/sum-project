@@ -4,7 +4,6 @@ from src.Camera import Camera
 from src.Counter import Counter
 from src.Led import Led
 from src.Db import Db
-import importlib.util
 
 # Settings of device
 device_id = 1
