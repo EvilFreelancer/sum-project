@@ -1,4 +1,5 @@
 import mysql.connector
+import os
 
 
 class Db:
@@ -8,12 +9,12 @@ class Db:
     user = "root"
     password = ""
 
-    def __init__(self, host, port, database, user, password):
-        self.host = host
-        self.port = port
-        self.database = database
-        self.user = user
-        self.password = password
+    def __init__(self):
+        self.host = os.getenv('DB_HOST')
+        self.port = os.getenv('DB_PORT')
+        self.database = os.getenv('DB_NAME')
+        self.user = os.getenv('DB_USER')
+        self.password = os.getenv('DB_PASS')
 
     def query(self, sql, val):
         mydb = mysql.connector.connect(

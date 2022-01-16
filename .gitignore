@@ -1,3 +1,4 @@
 /.idea
 /docker/mariadb_data
 __pycache__
+/backend/.env

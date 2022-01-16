@@ -4,22 +4,14 @@ from src.Camera import Camera
 from src.Counter import Counter
 from src.Led import Led
 from src.Db import Db
+from dotenv import load_dotenv
 
-# Settings of device
-device_id = 1
-
-# Database settings
-db_host = '192.168.1.10'
-db_port = 3306
-db_name = 'sum'
-db_user = 'sum_user'
-db_pass = 'sum_pass'
-
-# GPIO settings
-gpio_pin = 14
+# Read env from .env file
+load_dotenv()
 
 # Turn on LED
-led = Led(gpio_pin)
+# TODO: if is too dark check
+led = Led()
 led.on()
 
 # Generate filename by current time
@@ -38,13 +30,12 @@ counter = Counter(filename)
 digits = counter.get_digits()
 
 # Turn off LED
-led = Led(gpio_pin)
 led.off()
 
 # Insert into database
-db = Db(db_host, db_port, db_name, db_user, db_pass)
+db = Db()
 sql = "INSERT INTO reports (value, device_id, image) VALUES (%s, %s, %s)"
-val = (digits, device_id, filename)
+val = (digits, os.getenv('DEVICE_ID'), filename)
 db.query(sql, val)
 
 print(digits)
