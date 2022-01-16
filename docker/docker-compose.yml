@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+
+  mariadb:
+    restart: unless-stopped
+    image: mariadb:10.5
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=sum
+      - MYSQL_USER=sum_user
+      - MYSQL_PASSWORD=sum_pass
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50k"
