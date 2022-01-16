@@ -1,3 +1,4 @@
-mysql_connector_repackaged
+python-dotenv
+mysql_connector
 opencv_python
 pytesseract
