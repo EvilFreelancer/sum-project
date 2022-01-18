@@ -17,8 +17,6 @@ const style = {
 const ModalDeleteComponent = ({object, name, handleReload}) => {
   const [open, setOpen] = React.useState(false);
 
-  console.log(object);
-
   const deleteObject = () => {
     axios.delete(`http://192.168.1.10:3307/api/` + name + `/` + object.id).then(() => {
       setOpen(false);

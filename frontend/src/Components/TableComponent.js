@@ -7,8 +7,9 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import {ButtonGroup} from "@mui/material";
-import ModalEditComponent from "./ModalEditComponent";
+import ModalEditDeviceComponent from "./ModalEditDeviceComponent";
 import ModalDeleteComponent from "./ModalDeleteComponent";
+import ModalEditUserComponent from "./ModalEditUserComponent";
 
 const TableComponent = ({columns, data, name, handleReload}) => {
   return (
@@ -30,7 +31,8 @@ const TableComponent = ({columns, data, name, handleReload}) => {
               {columns.map((column, indexCol) => (
                 <TableCell key={indexRow + '-' + indexCol}>
                   {column.name === 'actions' ? <ButtonGroup>
-                    <ModalEditComponent object={row} name={name} handleReload={handleReload}/>
+                    {name === 'devices' && <ModalEditDeviceComponent object={row} name={name} handleReload={handleReload}/> }
+                    {name === 'users' && <ModalEditUserComponent object={row} name={name} handleReload={handleReload}/> }
                     <ModalDeleteComponent object={row} name={name} handleReload={handleReload}/>
                   </ButtonGroup> : row[column.name]}
                 </TableCell>
