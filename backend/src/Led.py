@@ -8,9 +8,12 @@ class Led:
     pin = 14
 
     def __init__(self):
-        self.pin = os.getenv('GPIO_PIN')
+
+        if os.getenv('GPIO_PIN') is not None:
+            self.pin = int(os.getenv('GPIO_PIN'))
+
         GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.pin, GPIO.OUT, initial=GPIO.LOW)
 
     def on(self):

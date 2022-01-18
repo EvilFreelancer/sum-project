@@ -22,8 +22,8 @@ imagesPath = os.path.dirname(os.path.abspath(__file__)) + '/images'
 filename = imagesPath + "/" + "test.png"
 
 # Capture an image
-camera = Camera(filename)
-image = camera.take_image()
+# camera = Camera(filename)
+# image = camera.take_image()
 
 # Extract counter from image
 counter = Counter(filename)
