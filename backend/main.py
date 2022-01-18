@@ -19,7 +19,7 @@ if os.getenv('DEVICE_LED', 'on') != 'off':
 now = datetime.now()
 time = now.strftime("%Y-%m-%d_%H:%M:%S")
 imagesPath = os.path.dirname(os.path.abspath(__file__)) + '/images'
-if os.getenv('DEBUG', 'on') == 'on':
+if os.getenv('DEBUG', 'on') != 'on':
     filename = imagesPath + "/" + "counter_" + time + ".png"
 else:
     filename = imagesPath + "/" + "test.png"
