@@ -11,26 +11,31 @@ load_dotenv()
 
 # Turn on LED
 # TODO: if is too dark check
-led = Led()
-led.on()
+if os.getenv('DEVICE_LED', 'on') != 'off':
+    led = Led()
+    led.on()
 
 # Generate filename by current time
 now = datetime.now()
 time = now.strftime("%Y-%m-%d_%H:%M:%S")
 imagesPath = os.path.dirname(os.path.abspath(__file__)) + '/images'
-# filename = imagesPath + "/" + "counter_" + time + ".png"
-filename = imagesPath + "/" + "test.png"
+if os.getenv('DEBUG', 'on') == 'on':
+    filename = imagesPath + "/" + "counter_" + time + ".png"
+else:
+    filename = imagesPath + "/" + "test.png"
 
 # Capture an image
-# camera = Camera(filename)
-# image = camera.take_image()
+if os.getenv('DEBUG', 'on') != 'on':
+    camera = Camera(filename)
+    image = camera.take_image()
 
 # Extract counter from image
 counter = Counter(filename)
 digits = counter.get_digits()
 
 # Turn off LED
-led.off()
+if os.getenv('DEVICE_LED', 'on') != 'off':
+    led.off()
 
 # Insert into database
 db = Db()
