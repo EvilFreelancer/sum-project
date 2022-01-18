@@ -19,3 +19,15 @@ services:
       driver: "json-file"
       options:
         max-size: "50k"
+
+  xmysql:
+    restart: unless-stopped
+    build:
+      context: ./xmysql
+    command: ["-h", "mariadb", "-d", "sum", "-u", "sum_user", "-p", "sum_pass", "--ipAddress", "0.0.0.0"]
+    ports:
+      - 3307:3000
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50k"

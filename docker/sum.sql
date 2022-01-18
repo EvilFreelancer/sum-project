@@ -17,9 +17,9 @@ CREATE TABLE `reports` (
 
 CREATE TABLE `devices` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `name` integer,
+  `name` text,
   `created_at` datetime,
   `updated_at` datetime
 );
 
-ALTER TABLE `reports` ADD FOREIGN KEY (`device_id`) REFERENCES `devices` (`id`);
+ALTER TABLE `reports` ADD FOREIGN KEY (`device_id`) REFERENCES `devices` (`id`) ON DELETE SET NULL;
